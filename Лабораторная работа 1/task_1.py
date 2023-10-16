@@ -1,28 +1,12 @@
-# Арифметическая прогрессия, пропущен один элемент
-list_ = [1, 5, 9, 13, 21, 25]
-print('Исходный список',list_)
+# Исходный список
+numbers = [2, -93, -2, 8, None, -44, -1, -85, -14, 90, -22, -90, -100, -8, 38, -92, -45, 67, 53, 25]
+print('Исходный список', numbers)
 
-# Фактическая сумма чисел
-sum_fact = sum(list_)
+# Нашли None, поменяли на 0
+numbers = [(0 if x is None else x) for x in numbers]
+print('Новый список   ', numbers)
 
-# Сумма соответствующей прогрессии без пропусков
-n = len(list_) + 1 # количество элементов в прогрессии
-sum_similar = n * (list_[0] + list_[-1])/2    # формула суммы ариф. прогресси
-step = (list_[-1] - list_[0])/(n - 1)   # шаг прогрессии
-
-# Разница между двумя суммами - это пропущенный элемент прогрессии
-miss = sum_similar - sum_fact
-print('Пропущенный элемент - ', miss)
-# Его порядковый номер найдем через шаг прогрессии
-number = (miss - list_[0]) / step
-print('его порядковый номер - ', number)
-
-# Среднее арифметическое
-mean_num = round(sum(list_)/(len(list_) + 1), 1)
-print('Среднее арифметическое - ', mean_num)
-
-# Поместим в список с помощью слайсирования
-left = list_[:int(number)]  # элементы до пропущенной позиции
-right = list_[int(number):] # элементы после пропущенной позиции
-new_list = left + [mean_num] + right
-print('Новый список', new_list)
+# Меняем на среднее арифметическое
+mean_num = round(sum(numbers)/len(numbers), 1)  # среднее
+numbers = [(mean_num if x == 0 else x) for x in numbers]
+print('Итоговый список', numbers)
